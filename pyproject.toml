@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vision-mlbn"
+version = "0.2.0"
+authors = [
+    {name = "Weitao Li", email = "2251984@tongji.edu.cn"},
+    {name = "Gong Cheng", email = "gongch@tongji.edu.cn"},
+]
+requires-python = ">=3.11"
+description = "Vision-MLBN: Mamba with MLBN Encoder"
+readme = "README.md"
+
+# Keep ONLY pure-Python deps here (installed via uv pip into the micromamba env).
+# Do NOT list torch/numpy/mamba-ssm/causal-conv1d here.
+dependencies = [
+  "pyyaml",
+  "jsonargparse",
+]
+
+[project.optional-dependencies]
+train = [
+  "tensorboard",
+]
+
+dev = [
+  "pytest>=8",
+  "ruff>=0.6",
+  "pyright>=1.1.380",
+  "docformatter",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vision_mlbn"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = [
+  ".mypy_cache",
+  ".pytest_cache",
+  ".ruff_cache",
+  ".venv",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "C4", "SIM", "TCH"]
+ignore = [
+  "E402",  # import not at top
+  "B018",  # useless expression (debugging)
+  "F401",  # imported but unused
+  "F841",  # local variable is assigned to but never used
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+
+[tool.docformatter]
+wrap-summaries = 88
+wrap-descriptions = 88
+
+[tool.pyright]
+typeCheckingMode = "basic"
+reportMissingImports = "warning"
+pythonVersion = "3.11"
