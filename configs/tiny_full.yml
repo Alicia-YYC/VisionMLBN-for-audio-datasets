@@ -1,0 +1,62 @@
+model: tiny
+seed: 42
+
+# dataset
+dataset_path: /shared/data/processed/
+input_size: 224
+
+# training
+epochs: 50
+batch_size: 32
+lr: 0.0005
+min_lr: 0.00002
+weight_decay: 0.05
+warmup_epochs: 5
+plateau_epochs: 0
+mid_lr: 0.00015
+mid_lr_epoch: 20
+num_workers: 4
+max_grad_norm: 1.0
+gradient_accumulation_steps: 1
+patience: 10
+lr_reduce_factor: 0.8
+lr_reduce_patience: 3
+
+# DDP / AMP / aug
+use_ddp: false
+use_amp: true
+use_tf32: true
+amp_dtype: bf16
+repeated_aug: 1
+
+# mixup
+use_mixup: false
+mixup_alpha: 0.2
+cutmix_alpha: 1.0
+mixup_prob: 0.5
+mixup_stop_epoch: 9999
+fused_optimizer: false
+
+# ema
+use_ema: false
+ema_decay: 0.9999
+ema_start_epoch: 0
+
+# loss / regularization
+cudnn_benchmark: true
+label_smoothing: 0.0
+symmetry_weight: 0.01
+drop_path_rate: 0.1
+use_tensorboard: true
+use_strong_augmentation: false
+
+# tta / swa
+use_tta: false
+tta_level: light
+use_swa: false
+swa_start_epoch: 40
+swa_freq: 1
+
+# output
+save_dir: /home/yuechen/packages/signal/outputs/debug_run_full #same
+log_dir: /home/yuechen/packages/signal/logs/debug_run_full #same
