@@ -1,0 +1,29 @@
+import matplotlib.pyplot as plt
+
+# 如果服务器支持中文字体，可保留下面两行
+plt.rcParams['font.sans-serif'] = ['SimHei']   # 中文黑体
+plt.rcParams['axes.unicode_minus'] = False     # 正常显示负号
+
+# ESC-5 日志数据
+epochs_esc5 = list(range(1, 17))
+train_loss_esc5 = [1.5054, 1.2876, 1.2642, 1.1943, 1.1177, 1.0825,
+                   0.9006, 0.7822, 0.7574, 0.6939, 0.6452, 0.6024,
+                   0.6439, 0.4971, 0.5671, 0.5104]
+val_loss_esc5 = [1.1888, 1.0037, 0.9211, 0.8044, 0.8479, 0.6363,
+                 0.5730, 0.4500, 0.4239, 0.4727, 0.3865, 0.4072,
+                 0.3415, 0.4309, 0.4979, 0.3300]
+
+plt.figure(figsize=(8, 5))
+plt.plot(epochs_esc5, train_loss_esc5, marker='o', linewidth=2, label='训练损失')
+plt.plot(epochs_esc5, val_loss_esc5, marker='s', linewidth=2, label='验证损失')
+
+plt.xlabel('训练轮数')
+plt.ylabel('损失值')
+# plt.title('ESC-5 数据集训练损失与验证损失变化曲线')
+plt.xticks(epochs_esc5)
+plt.grid(True, alpha=0.3)
+plt.legend()
+plt.tight_layout()
+
+plt.savefig('esc5_loss_curve_cn.png', dpi=300, bbox_inches='tight')
+plt.show()

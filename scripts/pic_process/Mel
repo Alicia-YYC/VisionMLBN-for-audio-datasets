@@ -1,0 +1,27 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import librosa
+
+plt.rcParams['font.sans-serif'] = ['SimHei', 'Noto Sans CJK SC', 'Microsoft YaHei']
+plt.rcParams['axes.unicode_minus'] = False
+
+sr = 16000
+n_fft = 1024
+n_mels = 20   # 示意图用20个就够了，别画128个，太密
+
+mel_filters = librosa.filters.mel(sr=sr, n_fft=n_fft, n_mels=n_mels)
+
+# 频率轴（只取到 Nyquist 频率）
+freqs = np.linspace(0, sr / 2, mel_filters.shape[1])
+
+plt.figure(figsize=(8, 5))
+for i in range(n_mels):
+    plt.plot(freqs, mel_filters[i], linewidth=1.2)
+
+plt.xlabel('频率（Hz）')
+plt.ylabel('滤波器响应')
+plt.title('Mel 滤波器组示意图')
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.savefig('mel_filter_bank.png', dpi=300, bbox_inches='tight')
+plt.show()
