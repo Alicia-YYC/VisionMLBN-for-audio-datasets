@@ -12,8 +12,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# 导入MLBN编码器
-from MLBN import VisionMLBN_encoder
+# Import the encoder from the same package so editable and wheel installs work.
+from .MLBN import VisionMLBN_encoder
 from timm.models.layers import DropPath, lecun_normal_, to_2tuple, trunc_normal_
 from timm.models.registry import register_model
 from timm.models.vision_transformer import _cfg, _load_weights

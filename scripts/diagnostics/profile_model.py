@@ -20,10 +20,7 @@ from torch.profiler import ProfilerActivity, profile, record_function, schedule
 torch._dynamo.config.suppress_errors = True
 torch._dynamo.disable()
 
-# 添加当前目录到Python路径
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-from VisionMLBN import vim_tiny_patch16_224_mlbn
+from vision_mlbn.VisionMLBN import vim_tiny_patch16_224_mlbn
 
 
 def create_dummy_data(batch_size, device):

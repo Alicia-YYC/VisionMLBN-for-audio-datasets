@@ -143,7 +143,7 @@ def main():
     else:
       raise ValueError(f"Unsupported classifier: {args.classifier}")
 
-    print("Training SVM...")
+    print(f"Training {args.classifier.upper()}...")
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_val)

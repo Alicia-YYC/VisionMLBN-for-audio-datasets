@@ -13,13 +13,13 @@ def parse_args():
     parser.add_argument(
         "--input_root",
         type=str,
-        default="/shared/data/rawaudio/",
+        default="data/raw_audio",
         help="Root directory of raw audio dataset",
     )
     parser.add_argument(
         "--output_root",
         type=str,
-        default="/shared/data/processed/",
+        default="data/processed/custom",
         help="Root directory of output spectrogram dataset",
     )
     parser.add_argument("--sample_rate", type=int, default=16000)

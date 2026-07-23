@@ -2,7 +2,7 @@ model: tiny
 seed: 42
 
 # dataset
-dataset_path: /shared/data/processed/
+dataset_path: data/processed/custom
 input_size: 224
 
 # training
@@ -58,5 +58,5 @@ swa_start_epoch: 40
 swa_freq: 1
 
 # output
-save_dir: /home/yuechen/packages/signal/outputs/debug_run_full #same
-log_dir: /home/yuechen/packages/signal/logs/debug_run_full #same
+save_dir: outputs/vision_mlbn/custom
+log_dir: logs/vision_mlbn/custom

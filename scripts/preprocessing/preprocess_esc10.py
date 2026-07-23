@@ -13,13 +13,13 @@ def parse_args():
     parser.add_argument(
         "--esc50_root",
         type=str,
-        default="/shared/data/ESC-50-master",
+        default="data/ESC-50-master",
         help="Root directory of ESC-50 dataset",
     )
     parser.add_argument(
         "--output_root",
         type=str,
-        default="/shared/data/processed_esc50/",
+        default="data/processed/esc10",
         help="Root directory of output spectrogram dataset",
     )
     parser.add_argument("--sample_rate", type=int, default=16000)
@@ -115,7 +115,8 @@ def main():
         raise FileNotFoundError(f"Missing audio directory: {audio_dir}")
 
     df = pd.read_csv(csv_path)
-    print(f"Loaded {len(df)} samples from {csv_path}")
+    df = df[df["esc10"] == True].copy()
+    print(f"Loaded {len(df)} ESC-10 samples from {csv_path}")
     print(f"Number of classes: {df['category'].nunique()}")
     print(f"Validation fold: {args.val_fold}")
 
@@ -123,7 +124,7 @@ def main():
     n_val = (df["fold"] == args.val_fold).sum()
     print(f"train={n_train}, val={n_val}")
 
-    for _, row in tqdm(df.iterrows(), total=len(df), desc="Processing ESC-50"):
+    for _, row in tqdm(df.iterrows(), total=len(df), desc="Processing ESC-10"):
         try:
             process_row(row, audio_dir, output_root, args)
         except Exception as e:
