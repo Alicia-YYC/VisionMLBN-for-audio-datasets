@@ -1,4 +1,4 @@
-"""VisionMLBN在Tiny-ImageNet-200数据集上的训练脚本"""
+"""Train VisionMLBN on ImageFolder-formatted spectrogram datasets."""
 
 from datetime import datetime
 import logging
@@ -985,7 +985,7 @@ def adjust_learning_rate_cosine(
 
 
 def main():
-    parser = ArgumentParser(description="VisionMLBN Tiny-ImageNet-200 Training")
+    parser = ArgumentParser(description="VisionMLBN spectrogram classification training")
     parser.add_argument(
         "--config", action=ActionConfigFile, help="YAML/JSON 配置文件路径。命令行参数会覆盖配置文件中的同名字段。"
     )
